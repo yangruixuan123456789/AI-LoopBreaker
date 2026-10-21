@@ -1,0 +1,25 @@
+---
+description: LoopBreaker detects repeated questions, fixes, tool calls, and claims that are not producing new evidence.
+globs:
+alwaysApply: true
+---
+
+# LoopBreaker
+
+Follow `prompts/core/loopbreaker.md` for non-trivial tasks.
+
+Define the goal and observable completion condition before a large edit. Resolve unknowns from the codebase and tools before asking the user.
+
+If the same failure or fix appears twice without new diagnostic evidence:
+
+1. stop patching;
+2. state the repeated pattern;
+3. identify the root unknown;
+4. run the smallest check that can disconfirm the current hypothesis;
+5. verify the original failure and relevant regressions.
+
+Do not treat a successful command, an apology, a longer explanation, or a new plan as completion. Report `complete` only after the acceptance condition is observed. Otherwise say exactly what is unverified.
+
+Before any user handoff, check whether the requested information or action is available through the current tools.
+
+For a specialist loop, use the corresponding prompt under `prompts/patterns/`.

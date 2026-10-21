@@ -1,0 +1,293 @@
+{
+  "version": 2,
+  "description": "Manual cases for verifying loop detection and interruption.",
+  "description_zh": "用于验证循环识别与打断能力的人工评测用例。",
+  "cases": [
+    {
+      "id": "goal-drift",
+      "expected_loop": "LB-01",
+      "turns": [
+        "User asks to fix a login timeout in one endpoint.",
+        "The assistant changes logging, upgrades a shared session library, and adds a metrics panel while the timeout remains unverified.",
+        "The assistant proposes a second logging refactor."
+      ],
+      "turns_zh": [
+        "用户要求修复一个接口的登录超时。",
+        "助手修改日志、升级共享会话库并增加指标面板，但超时仍未验证。",
+        "助手又提出第二次日志重构。"
+      ],
+      "required_signals": [
+        "original acceptance condition is unresolved",
+        "unrelated work is expanding"
+      ],
+      "required_signals_zh": [
+        "原始验收条件仍未解决",
+        "无关工作正在扩大"
+      ]
+    },
+    {
+      "id": "clarification-ping-pong",
+      "expected_loop": "LB-02",
+      "turns": [
+        "User says the API token name is TOKEN and points to .env.example.",
+        "The assistant asks for the token name.",
+        "User says it is in the file already and the file is readable. The assistant asks what format the token uses."
+      ],
+      "turns_zh": [
+        "用户说明 API token 的名称是 TOKEN，并指向 .env.example。",
+        "助手询问 token 的名称。",
+        "用户表示该信息已经在可读取的文件中，助手却继续询问 token 的格式。"
+      ],
+      "required_signals": [
+        "information was already supplied or accessible",
+        "question does not guard a genuine user decision"
+      ],
+      "required_signals_zh": [
+        "信息已经提供或可以获取",
+        "问题并不对应真实的用户决策"
+      ]
+    },
+    {
+      "id": "assumption-tunnel",
+      "expected_loop": "LB-03",
+      "turns": [
+        "The assistant plans a Redis migration because 'most apps this size use Redis'.",
+        "No repository inspection has found Redis.",
+        "The next step assumes Redis persistence and adds a cluster configuration."
+      ],
+      "turns_zh": [
+        "助手因为“这个规模的多数应用都使用 Redis”而计划迁移到 Redis。",
+        "仓库检查尚未发现 Redis。",
+        "下一步却直接假设使用 Redis 持久化，并增加集群配置。"
+      ],
+      "required_signals": [
+        "load-bearing assumption is unverified",
+        "plan grows around the assumption"
+      ],
+      "required_signals_zh": [
+        "承重假设未经验证",
+        "方案围绕该假设不断扩张"
+      ]
+    },
+    {
+      "id": "fix-loop",
+      "expected_loop": "LB-04",
+      "turns": [
+        "A test fails in parseConfig.",
+        "The assistant changes a mock delay and the same assertion fails.",
+        "The assistant increases the mock timeout and the same assertion fails again."
+      ],
+      "turns_zh": [
+        "测试在 parseConfig 中失败。",
+        "助手修改 mock 延迟，同一个断言仍然失败。",
+        "助手继续增加 mock 超时，同一个断言再次失败。"
+      ],
+      "required_signals": [
+        "same failure boundary",
+        "two patches without new diagnostic evidence"
+      ],
+      "required_signals_zh": [
+        "失败边界相同",
+        "两个补丁都没有带来新的诊断证据"
+      ]
+    },
+    {
+      "id": "hypothesis-lock",
+      "expected_loop": "LB-05",
+      "turns": [
+        "The assistant believes the bug is caused by caching.",
+        "Searches collect three cache-related files but never test with caching disabled.",
+        "An observation shows the bug survives with the cache bypassed, but the assistant proposes another cache fix."
+      ],
+      "turns_zh": [
+        "助手认为 bug 由缓存导致。",
+        "搜索收集了三个与缓存相关的文件，却从未在禁用缓存的情况下测试。",
+        "观察结果显示绕过缓存后 bug 仍然存在，但助手又提出一个缓存修复。"
+      ],
+      "required_signals": [
+        "disconfirming evidence exists",
+        "old hypothesis remains active"
+      ],
+      "required_signals_zh": [
+        "已经存在反证",
+        "旧假设仍然被继续使用"
+      ]
+    },
+    {
+      "id": "context-amnesia",
+      "expected_loop": "LB-06",
+      "turns": [
+        "User requires backward compatibility and no public API changes.",
+        "The assistant implements the feature without changing the API.",
+        "After a long detour, the assistant proposes removing the same public endpoint to simplify the design."
+      ],
+      "turns_zh": [
+        "用户要求保持向后兼容，不得修改公共 API。",
+        "助手在不修改 API 的情况下实现了功能。",
+        "经过一段较长的讨论后，助手为了简化设计，提出删除同一个公共接口。"
+      ],
+      "required_signals": [
+        "hard constraint was lost",
+        "settled work is being undone"
+      ],
+      "required_signals_zh": [
+        "硬约束已经丢失",
+        "已经确定的工作正在被推翻"
+      ]
+    },
+    {
+      "id": "tool-busywork",
+      "expected_loop": "LB-07",
+      "turns": [
+        "The assistant runs the same test command and receives the same failure.",
+        "It runs the command again without changing code or inputs.",
+        "It searches for more files but does not state a new fact or rejected hypothesis."
+      ],
+      "turns_zh": [
+        "助手运行同一个测试命令，收到相同失败。",
+        "在没有修改代码或输入的情况下再次运行该命令。",
+        "助手搜索了更多文件，却没有说明新事实或被排除的假设。"
+      ],
+      "required_signals": [
+        "tool result delta is absent",
+        "activity is being treated as progress"
+      ],
+      "required_signals_zh": [
+        "工具结果没有信息增量",
+        "活动被当成了进展"
+      ]
+    },
+    {
+      "id": "agreement-loop",
+      "expected_loop": "LB-08",
+      "turns": [
+        "The user says the proposed migration will break old clients.",
+        "The assistant apologizes and restates the user's concern, then repeats the migration plan.",
+        "The user repeats the compatibility concern; the assistant apologizes again."
+      ],
+      "turns_zh": [
+        "用户指出拟议迁移会破坏旧客户端。",
+        "助手道歉并复述用户的担忧，随后再次重复迁移方案。",
+        "用户再次提出兼容性问题，助手再次道歉。"
+      ],
+      "required_signals": [
+        "no model or artifact change",
+        "apology replaces correction"
+      ],
+      "required_signals_zh": [
+        "模型或工件没有改变",
+        "道歉取代了修正"
+      ]
+    },
+    {
+      "id": "false-completion",
+      "expected_loop": "LB-09",
+      "turns": [
+        "User asks for filter-preserving pagination.",
+        "The assistant edits the handler and says 'done, this should work' without running a test.",
+        "The user reports the bug; the assistant says 'fixed now' without new verification."
+      ],
+      "turns_zh": [
+        "用户要求分页保留筛选条件。",
+        "助手修改处理器后说“完成了，应该可以工作”，但没有运行测试。",
+        "用户报告 bug 仍然存在，助手没有进行新验证就说“现在修好了”。"
+      ],
+      "required_signals": [
+        "completion claim lacks observed acceptance result",
+        "status should be implemented-not-verified"
+      ],
+      "required_signals_zh": [
+        "完成声明缺少已观察的验收结果",
+        "状态应为已实现未验证"
+      ]
+    },
+    {
+      "id": "scope-spiral",
+      "expected_loop": "LB-10",
+      "turns": [
+        "User asks to fix a date formatting bug.",
+        "The assistant proposes a timezone architecture rewrite and shared utility cleanup.",
+        "The date bug has not yet been reproduced."
+      ],
+      "turns_zh": [
+        "用户要求修复日期格式化 bug。",
+        "助手提出重写时区架构并清理共享工具。",
+        "日期 bug 尚未被复现。"
+      ],
+      "required_signals": [
+        "target remains unresolved",
+        "broad refactor exceeds required dependency"
+      ],
+      "required_signals_zh": [
+        "目标仍未解决",
+        "大范围重构超出了必要依赖"
+      ]
+    },
+    {
+      "id": "planning-treadmill",
+      "expected_loop": "LB-11",
+      "turns": [
+        "The assistant writes a full implementation plan.",
+        "The user asks to begin; the assistant rewrites the plan as phases.",
+        "A one-file experiment could test the central unknown, but the assistant proposes another discovery phase."
+      ],
+      "turns_zh": [
+        "助手写了完整的实现计划。",
+        "用户要求开始执行，助手却把计划改写成分阶段方案。",
+        "一个单文件实验就可以测试核心未知，但助手又提出一个探索阶段。"
+      ],
+      "required_signals": [
+        "cheap decisive action is available",
+        "replanning occurs without new evidence"
+      ],
+      "required_signals_zh": [
+        "已经存在成本很低的决胜动作",
+        "没有新证据却再次规划"
+      ]
+    },
+    {
+      "id": "dependency-handoff",
+      "expected_loop": "LB-12",
+      "turns": [
+        "The user asks why a local test fails.",
+        "The repository and test runner are accessible.",
+        "The assistant asks the user to run the test and paste the stack trace."
+      ],
+      "turns_zh": [
+        "用户询问本地测试为什么失败。",
+        "仓库和测试运行器都可以访问。",
+        "助手要求用户运行测试并粘贴堆栈。"
+      ],
+      "required_signals": [
+        "work is available through current tools",
+        "handoff is avoidable"
+      ],
+      "required_signals_zh": [
+        "工作可以通过当前工具完成",
+        "该移交给用户是可以避免的"
+      ]
+    },
+    {
+      "id": "fix-coverage",
+      "expected_loop": "LB-13",
+      "turns": [
+        "User reports that filters reset after clicking Next on page 2.",
+        "The assistant patches only the Next handler and the reported click passes.",
+        "The assistant declares completion, but direct page entry and browser back still reset filters."
+      ],
+      "turns_zh": [
+        "用户报告点击第 2 页后筛选条件重置。",
+        "助手只修改“下一页”处理器，用户报告的点击路径通过了。",
+        "助手宣布完成，但直接输入页码和浏览器后退仍然重置筛选。"
+      ],
+      "required_signals": [
+        "the bug was treated as one handler instead of an invariant",
+        "completion was declared before sibling paths were checked"
+      ],
+      "required_signals_zh": [
+        "把一个处理器当成整个 BUG，而不是一个不变量",
+        "在检查相邻路径前宣布完成"
+      ]
+    }
+  ]
+}

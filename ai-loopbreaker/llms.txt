@@ -1,0 +1,38 @@
+# LoopBreaker
+
+> LoopBreaker is a prompt pack that helps AI coding assistants detect repeated questions, actions, claims, and false progress without new evidence.
+>
+> LoopBreaker 是一组提示词，帮助 AI 编程助手识别反复出现却没有新证据的问题、动作、结论和假进展。
+
+## Core
+
+- [Core LoopBreaker protocol (English)](prompts/core/loopbreaker.md): Always-on loop detection and interruption protocol.
+- [LoopBreaker 核心协议（中文）](prompts/core/loopbreaker.zh.md)：常驻的循环识别与打断协议。
+- [Task kickoff prompt (English)](prompts/adapters/kickoff.md): Establish goal, constraints, acceptance criteria, and state anchor.
+- [任务启动词（中文）](prompts/adapters/kickoff.zh.md)：建立目标、约束、验收条件和状态锚点。
+- [Machine-readable manifest](prompts/manifest.json): Bilingual prompt index.
+
+## Patterns
+
+- [LB-01 Goal Drift / 目标漂移](prompts/patterns/lb-01-goal-drift.md) ([中文](prompts/patterns/lb-01-goal-drift.zh.md))
+- [LB-02 Clarification Ping-Pong / 追问乒乓](prompts/patterns/lb-02-clarification-ping-pong.md) ([中文](prompts/patterns/lb-02-clarification-ping-pong.zh.md))
+- [LB-03 Assumption Tunnel / 假设隧道](prompts/patterns/lb-03-assumption-tunnel.md) ([中文](prompts/patterns/lb-03-assumption-tunnel.zh.md))
+- [LB-04 Fix Loop / 修复打转](prompts/patterns/lb-04-fix-loop.md) ([中文](prompts/patterns/lb-04-fix-loop.zh.md))
+- [LB-05 Hypothesis Lock-in / 假设锁定](prompts/patterns/lb-05-hypothesis-lock.md) ([中文](prompts/patterns/lb-05-hypothesis-lock.zh.md))
+- [LB-06 Context Amnesia / 上下文失忆](prompts/patterns/lb-06-context-amnesia.md) ([中文](prompts/patterns/lb-06-context-amnesia.zh.md))
+- [LB-07 Tool Busywork / 工具空转](prompts/patterns/lb-07-tool-busywork.md) ([中文](prompts/patterns/lb-07-tool-busywork.zh.md))
+- [LB-08 Agreement Loop / 认同循环](prompts/patterns/lb-08-agreement-loop.md) ([中文](prompts/patterns/lb-08-agreement-loop.zh.md))
+- [LB-09 False Completion / 假完成](prompts/patterns/lb-09-false-completion.md) ([中文](prompts/patterns/lb-09-false-completion.zh.md))
+- [LB-10 Scope Spiral / 范围螺旋](prompts/patterns/lb-10-scope-spiral.md) ([中文](prompts/patterns/lb-10-scope-spiral.zh.md))
+- [LB-11 Planning Treadmill / 计划跑步机](prompts/patterns/lb-11-planning-treadmill.md) ([中文](prompts/patterns/lb-11-planning-treadmill.zh.md))
+- [LB-12 Dependency Handoff / 依赖转移](prompts/patterns/lb-12-dependency-handoff.md) ([中文](prompts/patterns/lb-12-dependency-handoff.zh.md))
+- [LB-13 Fix Coverage / 修复覆盖不全](prompts/patterns/lb-13-fix-coverage.md) ([中文](prompts/patterns/lb-13-fix-coverage.zh.md))
+
+## Docs
+
+- [Why AI conversations loop](docs/why-ai-loops.en.md)
+- [人与 AI 的对话为什么会循环](docs/why-ai-loops.md)
+- [Prompt design principles](docs/prompt-design.en.md)
+- [提示词设计原则](docs/prompt-design.md)
+- [GitHub import guide](GITHUB_IMPORT.en.md)
+- [GitHub 导入说明](GITHUB_IMPORT.zh.md)

@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "name": "LoopBreaker",
+  "version": "0.3.0",
+  "languages": ["en", "zh-CN"],
+  "core": "prompts/core/loopbreaker.md",
+  "core_zh": "prompts/core/loopbreaker.zh.md",
+  "prompts": [
+    {
+      "id": "LB-01",
+      "name": "Goal Drift",
+      "name_zh": "目标漂移",
+      "file": "prompts/patterns/lb-01-goal-drift.md",
+      "file_zh": "prompts/patterns/lb-01-goal-drift.zh.md",
+      "use_when": "Activity is increasing while the original outcome or acceptance criteria are no longer being checked.",
+      "use_when_zh": "活动持续增加，但原始目标或验收条件不再被检查。"
+    },
+    {
+      "id": "LB-02",
+      "name": "Clarification Ping-Pong",
+      "name_zh": "追问乒乓",
+      "file": "prompts/patterns/lb-02-clarification-ping-pong.md",
+      "file_zh": "prompts/patterns/lb-02-clarification-ping-pong.zh.md",
+      "use_when": "The assistant asks again for information that was provided or could be discovered.",
+      "use_when_zh": "助手再次询问已经提供或本来可以发现的信息。"
+    },
+    {
+      "id": "LB-03",
+      "name": "Assumption Tunnel",
+      "name_zh": "假设隧道",
+      "file": "prompts/patterns/lb-03-assumption-tunnel.md",
+      "file_zh": "prompts/patterns/lb-03-assumption-tunnel.zh.md",
+      "use_when": "A familiar but unverified assumption is shaping the entire solution.",
+      "use_when_zh": "一个熟悉但未验证的假设正在塑造整套方案。"
+    },
+    {
+      "id": "LB-04",
+      "name": "Fix Loop",
+      "name_zh": "修复打转",
+      "file": "prompts/patterns/lb-04-fix-loop.md",
+      "file_zh": "prompts/patterns/lb-04-fix-loop.zh.md",
+      "use_when": "Several local patches target the same failure without a causal model or new diagnostic evidence.",
+      "use_when_zh": "多个局部补丁针对同一个失败，却没有因果模型或新诊断证据。"
+    },
+    {
+      "id": "LB-05",
+      "name": "Hypothesis Lock-in",
+      "name_zh": "假设锁定",
+      "file": "prompts/patterns/lb-05-hypothesis-lock.md",
+      "file_zh": "prompts/patterns/lb-05-hypothesis-lock.zh.md",
+      "use_when": "Evidence is being collected only to support the first explanation.",
+      "use_when_zh": "只收集支持第一种解释的证据。"
+    },
+    {
+      "id": "LB-06",
+      "name": "Context Amnesia",
+      "name_zh": "上下文失忆",
+      "file": "prompts/patterns/lb-06-context-amnesia.md",
+      "file_zh": "prompts/patterns/lb-06-context-amnesia.zh.md",
+      "use_when": "Constraints, decisions, or completed work are lost in a long or compacted conversation.",
+      "use_when_zh": "约束、决策或已完成工作消失在长对话或上下文压缩中。"
+    },
+    {
+      "id": "LB-07",
+      "name": "Tool Busywork",
+      "name_zh": "工具空转",
+      "file": "prompts/patterns/lb-07-tool-busywork.md",
+      "file_zh": "prompts/patterns/lb-07-tool-busywork.zh.md",
+      "use_when": "Tool calls repeat or accumulate without changing the diagnosis, artifact, or decision.",
+      "use_when_zh": "工具调用不断重复或累积，却没有改变诊断、工件或决策。"
+    },
+    {
+      "id": "LB-08",
+      "name": "Agreement Loop",
+      "name_zh": "认同循环",
+      "file": "prompts/patterns/lb-08-agreement-loop.md",
+      "file_zh": "prompts/patterns/lb-08-agreement-loop.zh.md",
+      "use_when": "Apologies, acknowledgement, and paraphrasing replace substantive correction.",
+      "use_when_zh": "道歉、认同和复述取代了实质修正。"
+    },
+    {
+      "id": "LB-09",
+      "name": "False Completion",
+      "name_zh": "假完成",
+      "file": "prompts/patterns/lb-09-false-completion.md",
+      "file_zh": "prompts/patterns/lb-09-false-completion.zh.md",
+      "use_when": "Completion is claimed without an artifact, acceptance test, or observed result.",
+      "use_when_zh": "没有工件、验收测试或观察结果就声称完成。"
+    },
+    {
+      "id": "LB-10",
+      "name": "Scope Spiral",
+      "name_zh": "范围螺旋",
+      "file": "prompts/patterns/lb-10-scope-spiral.md",
+      "file_zh": "prompts/patterns/lb-10-scope-spiral.zh.md",
+      "use_when": "A narrow task expands into unrelated cleanup, rewrites, or speculative features.",
+      "use_when_zh": "范围明确的任务扩展成无关清理、重写或推测性功能。"
+    },
+    {
+      "id": "LB-11",
+      "name": "Planning Treadmill",
+      "name_zh": "计划跑步机",
+      "file": "prompts/patterns/lb-11-planning-treadmill.md",
+      "file_zh": "prompts/patterns/lb-11-planning-treadmill.zh.md",
+      "use_when": "Plans and analyses are repeatedly refined while a cheap decisive experiment is available.",
+      "use_when_zh": "存在成本很低的决胜实验，却反复完善计划和分析。"
+    },
+    {
+      "id": "LB-12",
+      "name": "Dependency Handoff",
+      "name_zh": "依赖转移",
+      "file": "prompts/patterns/lb-12-dependency-handoff.md",
+      "file_zh": "prompts/patterns/lb-12-dependency-handoff.zh.md",
+      "use_when": "The assistant asks the user to obtain information or perform work available to the assistant.",
+      "use_when_zh": "助手要求用户获取信息或执行助手自己可以完成的工作。"
+    },
+    {
+      "id": "LB-13",
+      "name": "Fix Coverage",
+      "name_zh": "修复覆盖不全",
+      "file": "prompts/patterns/lb-13-fix-coverage.md",
+      "file_zh": "prompts/patterns/lb-13-fix-coverage.zh.md",
+      "use_when": "A local patch removes the reported symptom without closing the same invariant across sibling paths, states, or callers.",
+      "use_when_zh": "局部补丁消除了报告症状，却没有在相邻路径、状态或调用方中关闭同一不变量。"
+    }
+  ]
+}
